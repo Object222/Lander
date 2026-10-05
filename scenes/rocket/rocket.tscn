@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://jwoxhjqeyj6x"]
+
+[ext_resource type="PackedScene" uid="uid://6dyva3gj74w0" path="res://assets/models/ship/rocket_baseA.glb" id="1_m1h3n"]
+[ext_resource type="Script" uid="uid://1drvghsukdsg" path="res://scenes/rocket/rocket.gd" id="1_ut1yo"]
+[ext_resource type="PackedScene" uid="uid://dclb22w62883n" path="res://assets/models/ship/rocket_fuelA.glb" id="2_g6bar"]
+[ext_resource type="PackedScene" uid="uid://dx40t40wfselt" path="res://assets/models/ship/rocket_sidesA.glb" id="3_qolsk"]
+[ext_resource type="PackedScene" uid="uid://dy3oai75yr5lr" path="res://assets/models/ship/rocket_finsA.glb" id="4_fa8w1"]
+[ext_resource type="PackedScene" uid="uid://bvd4pwl4mwg68" path="res://assets/models/ship/rocket_topA.glb" id="5_1nvrn"]
+[ext_resource type="PackedScene" uid="uid://bs2dbto4be8aw" path="res://assets/models/ship/monorail_trainFront.glb" id="6_hhimn"]
+[ext_resource type="PackedScene" uid="uid://xtumvppgc4sn" path="res://scenes/thrust/thrust.tscn" id="8_wrqyj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t2h4l"]
+height = 3.0166016
+radius = 0.6801758
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mq0dr"]
+size = Vector3(1.5, 0.2, 1.5)
+
+[node name="Rocket" type="RigidBody3D" unique_id=1064181584]
+gravity_scale = 0.5
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = 3.0
+script = ExtResource("1_ut1yo")
+
+[node name="Body" type="Node3D" parent="." unique_id=2107769319]
+
+[node name="rocket_baseA2" parent="Body" unique_id=577126928 instance=ExtResource("1_m1h3n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.5)
+
+[node name="rocket_fuelA2" parent="Body" unique_id=643087390 instance=ExtResource("2_g6bar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1.5)
+
+[node name="rocket_sidesA2" parent="Body" unique_id=777346667 instance=ExtResource("3_qolsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, -1.5)
+
+[node name="rocket_finsA2" parent="Body" unique_id=1611666309 instance=ExtResource("4_fa8w1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -1.5)
+
+[node name="rocket_topA2" parent="Body" unique_id=1663754275 instance=ExtResource("5_1nvrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.1995206, -1.5)
+
+[node name="monorail_trainFront2" parent="Body" unique_id=464056063 instance=ExtResource("6_hhimn")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -2, 4.397411, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=765433954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5141602, 0)
+shape = SubResource("CylinderShape3D_t2h4l")
+
+[node name="Thrust" parent="." unique_id=662897763 instance=ExtResource("8_wrqyj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="ThrustL" parent="." unique_id=1319792531 instance=ExtResource("8_wrqyj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.706, 0.05, 0)
+
+[node name="ThrustR" parent="." unique_id=1639856441 instance=ExtResource("8_wrqyj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.706, 0.05, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=2146818356]
+wait_time = 3.0
+one_shot = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=988284809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0900733, 0)
+shape = SubResource("BoxShape3D_mq0dr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

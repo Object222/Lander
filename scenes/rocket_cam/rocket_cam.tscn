@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dt2lmqpadpv3o"]
+
+[ext_resource type="Script" uid="uid://bgausye85jmm2" path="res://scenes/rocket_cam/rocket_cam.gd" id="1_8uyfb"]
+
+[node name="RocketCam" type="Camera3D" unique_id=339491855]
+script = ExtResource("1_8uyfb")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=62909947]
+light_energy = 3.0
+spot_range = 12.0

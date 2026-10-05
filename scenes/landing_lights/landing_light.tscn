@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ceevytw0rpqtn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrq8g"]
+albedo_color = Color(0.101960786, 0.08627451, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.7764706, 0.8784314, 1)
+emission_energy_multiplier = 3.41
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lq60i"]
+material = SubResource("StandardMaterial3D_mrq8g")
+height = 0.058
+
+[node name="LandingLight" type="MeshInstance3D" unique_id=1694596771]
+mesh = SubResource("CylinderMesh_lq60i")

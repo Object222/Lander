@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://b1qjycsihpiqt"]
+
+[ext_resource type="PackedScene" uid="uid://c0221yrbcjtje" path="res://assets/models/landing_pad/template-floor-detail-a.glb" id="1_rl6s6"]
+[ext_resource type="PackedScene" uid="uid://do4ww2xmtiy6j" path="res://assets/models/landing_pad/template-floor.glb" id="2_eaf02"]
+[ext_resource type="PackedScene" uid="uid://ceevytw0rpqtn" path="res://scenes/landing_lights/landing_light.tscn" id="3_eaf02"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qiuph"]
+albedo_color = Color(0.53333336, 0.57254905, 0.69803923, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dhnkw"]
+material = SubResource("StandardMaterial3D_qiuph")
+size = Vector3(16, 0.3, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rl6s6"]
+size = Vector3(16, 0.3, 16)
+
+[node name="LandingPad" type="Node3D" unique_id=1154573801]
+
+[node name="Tiles" type="Node3D" parent="." unique_id=1653236423]
+
+[node name="template-floor-detail-a2" parent="Tiles" unique_id=801398854 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
+
+[node name="template-floor-detail-a3" parent="Tiles" unique_id=1730923549 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2)
+
+[node name="template-floor-detail-a4" parent="Tiles" unique_id=2089072387 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
+
+[node name="template-floor-detail-a5" parent="Tiles" unique_id=801722964 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="template-floor-detail-a6" parent="Tiles" unique_id=284259852 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.0000005, 0, 6)
+
+[node name="template-floor-detail-a7" parent="Tiles" unique_id=536122872 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, 2)
+
+[node name="template-floor-detail-a8" parent="Tiles" unique_id=322896965 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0, -2)
+
+[node name="template-floor-detail-a9" parent="Tiles" unique_id=14971949 instance=ExtResource("1_rl6s6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.9999995, 0, -6)
+
+[node name="template-floor2" parent="Tiles" unique_id=2101347796 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="template-floor3" parent="Tiles" unique_id=285605606 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="template-floor4" parent="Tiles" unique_id=1053196797 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6)
+
+[node name="template-floor5" parent="Tiles" unique_id=295891385 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="template-floor6" parent="Tiles" unique_id=1411372835 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="template-floor7" parent="Tiles" unique_id=491516656 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="template-floor8" parent="Tiles" unique_id=1615114220 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="template-floor9" parent="Tiles" unique_id=1908488025 instance=ExtResource("2_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=577196743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1617322, 0)
+mesh = SubResource("BoxMesh_dhnkw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=2117197481]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=351290248]
+shape = SubResource("BoxShape3D_rl6s6")
+
+[node name="Lights" type="Node3D" parent="." unique_id=111468461]
+
+[node name="AreaLight3D" type="AreaLight3D" parent="Lights" unique_id=1318607074]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -8, 0.6, 0)
+light_color = Color(0.22745098, 0.32156864, 1, 1)
+light_energy = 11.0
+area_range = 10.0
+area_size = Vector2(16, 0.5)
+
+[node name="AreaLight3D2" type="AreaLight3D" parent="Lights" unique_id=325834433]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0.6, 0)
+light_color = Color(0.22745098, 0.32156864, 1, 1)
+light_energy = 11.0
+area_range = 10.0
+area_size = Vector2(16, 0.5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights" unique_id=499289370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_color = Color(1, 0.21960784, 0.050980393, 1)
+light_energy = 4.0
+omni_range = 10.0
+
+[node name="LandingLights" type="Node3D" parent="." unique_id=2084611581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3841858e-07, 0)
+
+[node name="LandingLight" parent="LandingLights" unique_id=1694596771 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 2)
+
+[node name="LandingLight2" parent="LandingLights" unique_id=1284631187 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 6)
+
+[node name="LandingLight3" parent="LandingLights" unique_id=756254096 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -2)
+
+[node name="LandingLight4" parent="LandingLights" unique_id=73248345 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -6)
+
+[node name="LandingLight5" parent="LandingLights" unique_id=1982827979 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 2)
+
+[node name="LandingLight6" parent="LandingLights" unique_id=1347963835 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 6)
+
+[node name="LandingLight7" parent="LandingLights" unique_id=8357012 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, -2)
+
+[node name="LandingLight8" parent="LandingLights" unique_id=1591139892 instance=ExtResource("3_eaf02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, -6)

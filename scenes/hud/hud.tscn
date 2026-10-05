@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dx4ifuuhpntxe"]
+
+[ext_resource type="FontFile" uid="uid://box2xdej1wuou" path="res://assets/fonts/Orbitron-ExtraBold.ttf" id="1_48c2t"]
+[ext_resource type="Script" uid="uid://dcmyxjvakh50l" path="res://scenes/hud/hud.gd" id="1_cgeww"]
+[ext_resource type="AudioStream" uid="uid://bb8b6tgaspx68" path="res://assets/music/Planetarium.ogg" id="3_v7mo4"]
+[ext_resource type="AudioStream" uid="uid://b5ihb2h84wdqy" path="res://assets/music/Engineering-Stars.ogg" id="4_n56i7"]
+[ext_resource type="AudioStream" uid="uid://bpmdecvpl7e4c" path="res://assets/music/Off-World-Desolation.ogg" id="5_mq0y1"]
+[ext_resource type="AudioStream" uid="uid://dvfr7ntxbgjto" path="res://assets/music/Cyber-City-Fever-Dream.ogg" id="6_go0ap"]
+[ext_resource type="AudioStream" uid="uid://b41ki4cveopch" path="res://assets/sounds/381679__hybrid_v__starship-landing-sequence.wav" id="7_mq0y1"]
+[ext_resource type="AudioStream" uid="uid://c33n0mw8nkgiq" path="res://assets/sounds/592388__magnuswaker__car-crash-with-glass.wav" id="8_mq0y1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cgeww"]
+font = ExtResource("1_48c2t")
+font_size = 20
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhd55"]
+streams_count = 4
+stream_0/stream = ExtResource("3_v7mo4")
+stream_1/stream = ExtResource("4_n56i7")
+stream_2/stream = ExtResource("5_mq0y1")
+stream_3/stream = ExtResource("6_go0ap")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mq0dr"]
+font = ExtResource("1_48c2t")
+font_size = 50
+font_color = Color(1, 0.21176471, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.7529412)
+
+[node name="Hud" type="Control" unique_id=1960396768]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cgeww")
+
+[node name="MC" type="MarginContainer" parent="." unique_id=31009784]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+
+[node name="Label" type="Label" parent="MC" unique_id=2094535947]
+layout_mode = 2
+text = "asasasas
+asasasas
+asasasas
+asasasas
+asasasas
+asasasas
+asasasas"
+label_settings = SubResource("LabelSettings_cgeww")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=745532328]
+stream = SubResource("AudioStreamRandomizer_nhd55")
+volume_db = -5.0
+autoplay = true
+
+[node name="GameOverRect" type="ColorRect" parent="." unique_id=1255865536]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15686275, 0.15686275, 0.15686275, 0.5529412)
+
+[node name="ResultLabel" type="Label" parent="GameOverRect" unique_id=811015853]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = -32.0
+offset_right = 176.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_mq0dr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1580716231]
+wait_time = 3.0
+one_shot = true
+
+[node name="LandSound" type="AudioStreamPlayer" parent="." unique_id=1956329529]
+stream = ExtResource("7_mq0y1")
+
+[node name="CrashSound" type="AudioStreamPlayer" parent="." unique_id=828106390]
+stream = ExtResource("8_mq0y1")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

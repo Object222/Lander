@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cj4rxdwynpepe"]
+
+[ext_resource type="PackedScene" uid="uid://jwoxhjqeyj6x" path="res://scenes/rocket/rocket.tscn" id="1_7h61r"]
+[ext_resource type="Texture2D" uid="uid://ctduxgofxbbss" path="res://assets/images/background_image_5.png" id="1_kelw5"]
+[ext_resource type="PackedScene" uid="uid://b1qjycsihpiqt" path="res://scenes/landing_pad/landing_pad.tscn" id="2_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://dx4ifuuhpntxe" path="res://scenes/hud/hud.tscn" id="3_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://dt2lmqpadpv3o" path="res://scenes/rocket_cam/rocket_cam.tscn" id="4_lfrn8"]
+[ext_resource type="PackedScene" uid="uid://xtor4uyu3m83" path="res://scenes/wind/wind.tscn" id="6_5i0tg"]
+
+[sub_resource type="GDScript" id="GDScript_lfrn8"]
+script/source = "extends Node
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"ui_cancel\"):
+		GameManager.load_main()
+"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6q06x"]
+panorama = ExtResource("1_kelw5")
+
+[sub_resource type="Sky" id="Sky_l3cfh"]
+sky_material = SubResource("PanoramaSkyMaterial_6q06x")
+
+[sub_resource type="Environment" id="Environment_5i0tg"]
+background_mode = 2
+sky = SubResource("Sky_l3cfh")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Game" type="Node" unique_id=1688228896]
+script = SubResource("GDScript_lfrn8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1460567648]
+environment = SubResource("Environment_5i0tg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1881662638]
+transform = Transform3D(-0.9958844, -0.084612735, -0.032479785, 0, -0.35836795, 0.93358046, -0.090632506, 0.9297382, 0.35689306, 0, 0, 0)
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="Rocket" parent="." unique_id=1064181584 node_paths=PackedStringArray("landing_pad", "wind") instance=ExtResource("1_7h61r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39566803, 24.00853, -0.2928276)
+landing_pad = NodePath("../LandingPad")
+wind = NodePath("../Wind")
+
+[node name="LandingPad" parent="." unique_id=1154573801 instance=ExtResource("2_0sr1o")]
+
+[node name="RocketCam" parent="." unique_id=339491855 node_paths=PackedStringArray("rocket", "pad") instance=ExtResource("4_lfrn8")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+rocket = NodePath("../Rocket")
+pad = NodePath("../LandingPad")
+
+[node name="Hud" parent="." unique_id=1960396768 instance=ExtResource("3_0sr1o")]
+
+[node name="Wind" parent="." unique_id=602044145 instance=ExtResource("6_5i0tg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.590171, 1.965836, -10.266093)
